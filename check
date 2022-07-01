@@ -8,9 +8,9 @@ if [ "$1" != "" ]; then
     shellcheck ./install
 else
   for dir in */; do
-      echo "-------- $dir"
+      echo -n "-------- $dir"
       cd "$dir"
-      shellcheck ./install
+      (shellcheck ./install && echo " OK") || echo
       cd "$ROOT"
   done
 fi
