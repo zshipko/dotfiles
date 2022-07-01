@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f "$HOME/.tmux.conf" ]]; then
+  cp "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak"
+fi
+
+cp tmux.conf "$HOME/.tmux.conf"

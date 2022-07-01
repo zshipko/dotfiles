@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+SCRIPT_DIR=$(dirname "$0")
+CURRENT=$(readlink -f "$SCRIPT_DIR")
+
+# install hx
+DEST=${1-$HOME/devel}
+cd "$DEST" && \
+  (git clone https://github.com/helix-editor/helix || git -C helix pull origin master) && \
+cd helix && \
+cargo install --path helix-term && \
+hx --grammar fetch && \
+hx --grammar build
+
+# install config
+mkdir -p ~/.config/helix
+ln -sf "$DEST/helix/runtime" ~/.config/helix/runtime
+cp "$CURRENT/config.toml" "$CURRENT/languages.toml" ~/.config/helix
+
+# install theme
+mkdir -p ~/.config/helix/themes
+cp "$CURRENT/newdefault.toml" ~/.config/helix/themes

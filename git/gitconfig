@@ -1,0 +1,27 @@
+[user]
+	email = zachshipko@gmail.com
+	name = zach
+[pull]
+	rebase = true
+[core]
+	excludesFile = ~/.gitignore
+	editor = hx
+[init]
+  defaultBranch = main
+
+[diff]
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+# Use a pager for large output, just like other git commands.
+[pager]
+  difftool = true
+
+# `git dft` is less to type than `git difftool`.
+[alias]
+  dft = difftool

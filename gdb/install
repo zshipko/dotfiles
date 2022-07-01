@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f "$HOME/.gdbinit" ]]; then
+  cp "$HOME/.gdbinit" "$HOME/.gdbinit.bak"
+fi
+
+cp gdbinit "$HOME/.gdbinit"

@@ -1,0 +1,3 @@
+[[language]]
+name = "ocaml"
+auto-format = true

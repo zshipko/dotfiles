@@ -1,0 +1,17 @@
+theme = "newdefault"
+
+[editor]
+auto-pairs = false
+true-color = true
+idle-timeout = 100
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal]
+"ret" = ["open_below", "normal_mode"]
+"'" = ["command_mode"]
+C-t = ["select_all", ":pipe trail", "collapse_selection"]

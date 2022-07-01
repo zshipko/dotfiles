@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ -f "$HOME/.bashrc" ]]; then
+  cp "$HOME/.bashrc" "$HOME/.bashrc.bak"
+fi
+
+cp bashrc "$HOME/.bashrc"
+
+if [ ! -f ~/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+fi

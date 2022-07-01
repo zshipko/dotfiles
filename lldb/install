@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f "$HOME/.lldbinit" ]]; then
+  cp "$HOME/.lldbinit" "$HOME/.lldbinit.bak"
+fi
+
+cp lldbinit "$HOME/.lldbinit"

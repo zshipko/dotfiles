@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+ROOT=$(pwd)
+shellcheck ./install
+shellcheck ./check
+if [ "$1" != "" ]; then
+    cd "$1"
+    shellcheck ./install
+else
+  for dir in */; do
+      echo "-------- $dir"
+      cd "$dir"
+      shellcheck ./install
+      cd "$ROOT"
+  done
+fi

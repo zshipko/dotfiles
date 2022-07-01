@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+NVIM=${NVIM-nvim}
+
+mkdir -p ~/.config/nvim/colors ~/.config/nvim/syntax
+cp init.lua ~/.config/nvim
+cp newdefault.vim ~/.config/nvim/colors/newdefault.vim
+cp -r ./syntax/* ~/.config/nvim/syntax/
+
+"$NVIM" +'PlugInstall --sync' +qa

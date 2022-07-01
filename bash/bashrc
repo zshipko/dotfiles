@@ -1,0 +1,59 @@
+alias open="xdg-open"
+alias copy="xclip -i -sel clip"
+alias paste="xclip -o -sel clip"
+alias say="espeak"
+
+source "/etc/profile.d/bash_completion.sh"
+
+export EDITOR=hx
+PS1=""
+if [[ $SSH_CONNECTION != "" ]]; then
+  RCol='\[\e[0m\]'
+  Color='\[\e[37;41m\]'
+  PS1="${Color}SSH${RCol} "
+fi
+
+PS1+='\[\e[0;96m\]\u\[\e[0m\]@\[\e[0;92m\]\H\[\e[0m\]:\[\e[0;93m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0m\]\w\n\[\e[0m\]\$ \[\e[0m\]'
+
+export PS1
+
+
+export PATH="$HOME/.local/bin:$HOME/go/bin:/home/zach/.cargo/bin:$PATH:$HOME/devel/klong"
+export CPATH="$HOME/.local/include:$CPATH"
+
+source "$HOME/.cargo/env"
+
+source /usr/share/bash-completion/completions/git
+
+eval "$(direnv hook bash)"
+
+alias fstar=fstar.exe
+
+# HSTR configuration - add this to ~/.bashrc
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND:-:}"
+# if this is interactive shell, then bind hstr to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "\C-a hstr -k \C-j"'; fi
+
+eval "$(zoxide init bash)"
+alias j=z
+
+function cd_up() {
+  cd $(printf "%0.s../" $(seq 1 $1 ));
+}
+alias 'cd..'='cd_up'
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+if [ -f /home/zach/.config/broot/launcher/bash/br ]; then
+  source /home/zach/.config/broot/launcher/bash/br
+fi

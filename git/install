@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -f "$HOME/.gitconfig" ]]; then
+  cp "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
+fi
+
+cp gitconfig "$HOME/.gitconfig"

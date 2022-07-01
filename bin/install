@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DEST=${1-$HOME/.local/bin}
+
+cp burn trail"$DEST"
