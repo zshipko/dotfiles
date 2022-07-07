@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ ! -f ~/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+  
+  ~/.asdf/bin/asdf plugin add python
+  ~/.asdf/bin/asdf plugin add nodejs
+  ~/.asdf/bin/asdf plugin add opam
+  
+  # Python
+  ~/.asdf/bin/asdf plugin install python latest
+  ~/.asdf/bin/asdf plugin global python latest
+  
+  # NodeJS
+  ~/.asdf/bin/asdf plugin install nodejs latest
+  ~/.asdf/bin/asdf plugin global nodejs latest
+  
+  # OCaml
+  ~/.asdf/bin/asdf plugin install opam latest
+  ~/.asdf/bin/asdf plugin global opam latest
+else
+  ~/.asdf/bin/asdf update
+fi
