@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+current=$(git branch --show-current)
+branch=${2-$current}
+git rev-list -n 1 --first-parent --before="$1" "$branch"
