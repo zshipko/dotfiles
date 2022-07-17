@@ -6,16 +6,10 @@ alias say="espeak"
 source "/etc/profile.d/bash_completion.sh"
 
 export EDITOR=hx
-PS1=""
-if [[ $SSH_CONNECTION != "" ]]; then
-  RCol='\[\e[0m\]'
-  Color='\[\e[37;41m\]'
-  PS1="${Color}SSH${RCol} "
-fi
 
 function print_code_if_error () {
   code=$?
-  
+    
   if [[ $code != 0 ]]; then
     echo
     printf "\033[0;31m[error: $code]\033[0m\n";
@@ -23,7 +17,14 @@ function print_code_if_error () {
   fi
 }
 
-PS1+='$(print_code_if_error)\[\e[0;96m\]\u\[\e[0m\]@\[\e[0;92m\]\H\[\e[0m\]:\[\e[0;93m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0m\]\w\n\[\e[0m\]\$ \[\e[0m\]'
+PS1='$(print_code_if_error)'
+if [[ $SSH_CONNECTION != "" ]]; then
+  RCol='\[\e[0m\]'
+  Color='\[\e[37;41m\]'
+  PS1+="${Color}SSH${RCol} "
+fi
+                    
+PS1+='\[\e[0;96m\]\u\[\e[0m\]@\[\e[0;92m\]\H\[\e[0m\]:\[\e[0;93m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0m\]\w\n\[\e[0m\]\$ \[\e[0m\]'
 
 export PS1
 
