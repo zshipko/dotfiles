@@ -17,12 +17,18 @@ function print_code_if_error () {
   fi
 }
 
-PS1='$(print_code_if_error)'
+function set_tab_title() {
+  S=${1-$PWD}
+  printf "\e]0;$S\7"
+}
+
+PS1='$(set_tab_title)$(print_code_if_error)'
 if [[ $SSH_CONNECTION != "" ]]; then
   RCol='\[\e[0m\]'
   Color='\[\e[37;41m\]'
   PS1+="${Color}SSH${RCol} "
 fi
+
                     
 PS1+='\[\e[0;96m\]\u\[\e[0m\]@\[\e[0;92m\]\H\[\e[0m\]:\[\e[0;93m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2) \[\e[0m\]\w\n\[\e[0m\]\$ \[\e[0m\]'
 
@@ -67,3 +73,9 @@ alias 'cd..'='cd_up'
 if [ -f /home/zach/.config/broot/launcher/bash/br ]; then
   source /home/zach/.config/broot/launcher/bash/br
 fi
+
+function mktempdir () {
+  mkdir ${1-tmp}
+  cd ${1-tmp}
+  ft add $PWD tmp || :
+}
