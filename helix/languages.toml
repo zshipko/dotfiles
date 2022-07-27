@@ -29,3 +29,13 @@ auto-format = true
 [[language]]
 name = "rust"
 auto-format = true
+
+[[language]]
+name = "futhark"
+scope = "source.futhark"
+injection-regex = "^futhark$"
+file-types = ["fut"]
+comment-token = "--"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "futhark", args = ["lsp"] }
+roots = []
