@@ -25,3 +25,6 @@
 # `git dft` is less to type than `git difftool`.
 [alias]
   dft = difftool
+
+[init]
+templatedir = ~/.git-template

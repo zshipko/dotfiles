@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Strip trailing whitespace
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+for file in $FILES; do
+  trail -i $file
+done
